@@ -1,52 +1,51 @@
-listaExamenes = [
-    { nombreCurso: 'Matemática I', nombreProfesor: 'Juan Pérez' },
-    { nombreCurso: 'Física General', nombreProfesor: 'María López' },
-    { nombreCurso: 'Química Orgánica', nombreProfesor: 'Carlos García' },
-    { nombreCurso: 'Biología Celular', nombreProfesor: 'Ana Torres' },
-    { nombreCurso: 'Historia del Perú', nombreProfesor: 'Pedro Gómez' },
-    { nombreCurso: 'Programación en C++', nombreProfesor: 'Luis Fernández' },
-    { nombreCurso: 'Estadística Aplicada', nombreProfesor: 'Sofía Rojas' },
-    { nombreCurso: 'Microeconomía', nombreProfesor: 'Diego Castillo' },
-    { nombreCurso: 'Derecho Constitucional', nombreProfesor: 'Lucía Ramírez' },
-    { nombreCurso: 'Ingeniería de Software', nombreProfesor: 'Fernando Morales' }
-];
-
-
-document.getElementById("miBoton").addEventListener("click", function() {
-    const cuerpoTabla = document.getElementById("tablaExamenes");
-
-    while (cuerpoTabla.firstChild) {
-        cuerpoTabla.removeChild(cuerpoTabla.firstChild);
+const planchas = [
+    {
+        curso: "Programacion de Computadoras 2",
+        docente: "Elias Espinoza",
+        tipo: "Parcial",
+        ciclo: "4º Ciclo",
+        periodo: "2024-1",
+        fecha: "18/04/2024",
+        archivo: "archivo"
+    },
+    {
+        curso: "Analisis de Sistemas de Informacion",
+        docente: "Soto Soto",
+        tipo: "Parcial",
+        ciclo: "5º Ciclo",
+        periodo: "2025-1",
+        fecha: "17/04/2025",
+        archivo: "archivo"
+    },
+    {
+        curso: "Estructura de Datos",
+        docente: "Luzmila Pro Concepcion",
+        tipo: "Final",
+        ciclo: "5º Ciclo",
+        periodo: "2025-1",
+        fecha: "19/04/2025",
+        archivo: "archivo"
     }
+];
+//console.log(planchas);
+const tabla=document.getElementById("tabla_body");
+tabla.innerHTML="";
 
-    let miButton = document.getElementById("miBoton");
-    //console.log('miButton', miButton);
-  
-
-    
-    let cursoPorBuscar = document.getElementById("lblNombreDocente").value;
-
-    console.log('cursoPorBuscar:::' , cursoPorBuscar);
-
-    
-    listaExamenes.forEach(examen => {
-
-        if( examen.nombreProfesor.includes(cursoPorBuscar)){
-
-            const filaTr = document.createElement("tr");
-    
-            const celdaCurso = document.createElement("td");
-            celdaCurso.textContent = examen.nombreCurso;
-    
-            const celdaProfesor = document.createElement("td");
-            celdaProfesor.textContent = examen.nombreProfesor;
-    
-            filaTr.appendChild(celdaCurso);
-            filaTr.appendChild(celdaProfesor);
-    
-            cuerpoTabla.appendChild(filaTr);
-        }
+planchas.forEach(function(plan){
+    let fila = `
+    <tr>
+        <td>${plan.curso}</td>
+        <td>${plan.docente}</td>
+        <td>${plan.tipo}</td>
+        <td>${plan.ciclo}</td>
+        <td>${plan.periodo}</td>
+        <td>${plan.fecha}</td>
+        <td>${plan.archivo}</td>
+    </tr>
+    `;
+    tabla.innerHTML += fila;
+})
 
 
-    });
-});
+
+
