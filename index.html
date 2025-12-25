@@ -1,29 +1,41 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>PLANCHAS AAAAA SM</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <h1 class="colorVerde">PLANCHAS</h1>
-        <h5>Universidad Mayor de San Marcos</h5>
-        <input id="lblNombreDocente" type="text" placeholder="Nombre del docente" required>
-        <input type="text" placeholder="Nombre del curso" required>
-        <button id="miBoton">Haz clic aquí</button>
-        <table border="1" cellpadding="8" cellspacing="0">
-            <thead>
-                <tr>
-                    <th class="colorVerde">Nombre del Curso</th>
-                    <th>Profesor</th>
-                </tr>
-            </thead>
-            <tbody id="tablaExamenes">
-                
-            </tbody>
-        </table>
-        
-        
-            
-    </body>
-    <script src="script.js"></script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planchas - Buscador</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="titulo">PlANCHAS SM</h1>
+        <div class="marco_busqueda">
+            <input class="busqueda" type="text" id="nombre" name="nombre" placeholder="Buscar Examenes...">
+            <select class="busqueda",name="curso" id="curso">
+                <option>Seleccionar Curso</option>
+            </select>
+            <select class="busqueda", name="docente" id="docente">
+                <option>Seleccionar Docente</option>
+            </select>
+            <button class="btn_buscar", name="buscar">Buscar</button>
+        </div>
+        <div id="resultados">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Curso</th>
+                        <th>Docente</th>
+                        <th>Tipo Examen</th>
+                        <th>Ciclo</th>
+                        <th>Periodo</th>
+                        <th>Fecha</th>
+                        <th>Archivo</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla_body"></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
 </html>
