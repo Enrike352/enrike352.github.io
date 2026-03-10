@@ -40,6 +40,11 @@ body{
     cursor: pointer;
 }
 
+.btn_limpiar{
+    padding: 10px;
+    cursor: pointer;
+}
+
 button:hover{
     background-color:#c0b0b0
 }
