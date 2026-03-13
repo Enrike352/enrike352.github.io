@@ -25,10 +25,16 @@ body{
 .titulo{
     font-size: 60px;
     margin-bottom: 20px;
+    text-align:center;
 }
 
 .marco_busqueda{
     padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .busqueda{

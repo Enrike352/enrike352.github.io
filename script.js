@@ -1,23 +1,28 @@
 let planchas = [];
-let lsDocentes = [
-    //{idDocente:1,docente:'Doc test 1'},
-    //{idDocente:2,docente:'Doc test 2'},
-    //{idDocente:3,docente:'Doc test 3'}
-];
+let lsDocentes = [];
+let lsCursos = [];
+//{idDocente:3,docente:'Doc test 3'}
 fetch('http://localhost:8080/planchas')//5s
     .then(response => response.json())
     .then(data => {
-        console.log("¡Listo! Aquí están tus datos:", data);
         planchas = data;
     })
     .catch(error => console.error("Error:", error));
 
-fetch('http://localhost:8080/docente/1')//5s
+fetch('http://localhost:8080/docente')//5s
     .then(response => response.json())
     .then(data => {
-        console.log("RECIBIENDO DATOS DOCENTE:", data);
         lsDocentes = data;//AQUI RECIBES LA DATA DESPUES DE 5S
-        cargarDocentes2([lsDocentes]);
+        cargarDocentes2(lsDocentes);
+    })
+    .catch(error => console.error("Error:", error));
+
+fetch('http://localhost:8080/curso')//5s
+    .then(response => response.json())
+    .then(data => {
+        console.log("RECIBIENDO DATOS CURSO:", data);
+        lsCursos = data;//AQUI RECIBES LA DATA DESPUES DE 5S
+        cargarCursos2(lsCursos);
     })
     .catch(error => console.error("Error:", error));
 // const planchas = [
@@ -30,33 +35,6 @@ fetch('http://localhost:8080/docente/1')//5s
 //         fecha: "18/04/2024",
 //         archivo: "archivo"
 //     },
-//     {
-//         curso: "Analisis de Sistemas de Informacion",
-//         docente: "Soto Soto",
-//         tipo: "Parcial",
-//         ciclo: "5º Ciclo",
-//         periodo: "2025-1",
-//         fecha: "17/04/2025",
-//         archivo: "archivo"
-//     },
-//     {
-//         curso: "Estructura de Datos",
-//         docente: "Luzmila Pro Concepcion",
-//         tipo: "Final",
-//         ciclo: "5º Ciclo",
-//         periodo: "2025-1",
-//         fecha: "19/04/2025",
-//         archivo: "archivo"
-//     },
-//     {
-//         curso: "Programacion de Computadoras 1",
-//         docente: "Elias Espinoza",
-//         tipo: "Final",
-//         ciclo: "3º Ciclo",
-//         periodo: "2023-2",
-//         fecha: "03/12/2023",
-//         archivo: "archivo"
-//     }
 // ];
 
 const tabla=document.getElementById("tabla_body");
@@ -84,23 +62,71 @@ function lista(planchas){
     })
 }
 
-//http://localhost:8080/planchas
-//planchas = http://localhost:8080/planchas;
-//[{"idPlanchas":2,"idCurso":1,"idDocente":1,"idCiclo":2,"periodoAcademico":null,"tipoExamen":null,"fechaExamen":null,"archivo":null},{"idPlanchas":3,"idCurso":1,"idDocente":2,"idCiclo":1,"periodoAcademico":null,"tipoExamen":null,"fechaExamen":"2025-08-07","archivo":null}]
-
 btnBuscar.addEventListener("click", () =>{
     const cursoSeleccionado=boxCurso.value;
     const docenteSeleccionado=boxDocente.value;
     const resultado=planchas.filter(plan =>{
-        const coincideCurso = (cursoSeleccionado == "") || (plan.curso==cursoSeleccionado);
+        const coincideCurso = (cursoSeleccionado == "") || (plan.idCurso==cursoSeleccionado);
 
-        const coincideDocente = (docenteSeleccionado == "") || (plan.docente==docenteSeleccionado);
+        const coincideDocente = (docenteSeleccionado == "") || (plan.idDocente==docenteSeleccionado);
 
         return coincideCurso && coincideDocente;
     });
     lista(resultado);
 })
+/*
+boxDocente.addEventListener("change", ()=>{
+    const filtroCurso=boxCurso.value;
+    const filtroDocente=boxDocente.value;
+    const planchasDelProfe=planchas.filter(plan =>{
+        return plan.idDocente==filtroDocente;
+    });
+    console.log("Planchas de este profe: ", planchasDelProfe);
+})
+*/
+boxDocente.addEventListener("change", () => {
+    const filtroDocente = boxDocente.value;
+    if(filtroDocente==""){
+        cargarCursos2(lsCursos);
+    }else{
+        // 1. Filtramos las planchas del profe seleccionado
+    const planchasDelDocente = planchas.filter(plan => {
+        return plan.idDocente == filtroDocente;
+    });
+    // 2. Limpiamos el combobox de cursos (dejamos solo la opción por defecto)
+    boxCurso.innerHTML = '<option value="">Seleccionar Curso</option>';
+    const cursosYaAgregados = [];
+    // 3. Recorremos la lista chiquita que acabamos de filtrar
+    planchasDelDocente.forEach(function(plan) {
+        if(cursosYaAgregados.includes(plan.idCurso)==false){
+            const opcion = `<option value="${plan.idCurso}">${plan.nombreCurso}</option>`;
+            boxCurso.innerHTML += opcion;
+            cursosYaAgregados.push(plan.idCurso);
+        }
+    });
+    }
+})
 
+boxCurso.addEventListener("change", () => {
+    const filtroCurso = boxCurso.value;
+    if(filtroCurso == ""){
+        cargarDocentes2(lsDocentes);
+    }else{
+     const planchasDelCurso = planchas.filter(plan => {
+        return plan.idCurso == filtroCurso;
+     });
+    boxDocente.innerHTML = '<option value="">Seleccionar Docente</option>';
+    const docentesYaAgregados = [];
+    planchasDelCurso.forEach(function(plan) {
+        if(docentesYaAgregados.includes(plan.idDocente)==false){
+            const opcion = `<option value="${plan.idDocente}">${plan.nombreDocente}</option>`;
+            boxDocente.innerHTML += opcion;
+            docentesYaAgregados.push(plan.idDocente);
+        }
+    });
+    }
+})
+/*
 function cargarCursos(lista){
     const todosLosCursos = lista.map(item => item.curso);
     const cursosUnicos = [...new Set(todosLosCursos)];
@@ -122,13 +148,22 @@ function cargarDocentes(lista){
         boxDocente.innerHTML += opcionDocentes;
     });
 }
+*/
+function cargarCursos2(lsCursos){
+    console.log("LLENANDO CURSOS CON LOS ELEMENTOS CURSOS: ", lsCursos);
+    boxCurso.innerHTML = '<option value="">Seleccionar Curso</option>';
+
+    lsCursos.forEach(function(curso){
+        console.log("CURSO",curso)
+        const opcionCursos = `<option value="${curso.idCurso}">${curso.nombreCurso}</option>`;
+        boxCurso.innerHTML += opcionCursos;
+    });
+}
 
 function cargarDocentes2(lsDocentes){
-    console.log("LLENANDO DOCENTES CON LOS ELEMENTOS: ", lsDocentes);
     boxDocente.innerHTML = '<option value="">Seleccionar Docente</option>'
 
     lsDocentes.forEach(function(docente){
-        // console.log("DOCENTE",docente)
         const opcionDocentes = `<option value="${docente.idDocente}">${docente.nombreDocente}</option>`;
         boxDocente.innerHTML += opcionDocentes;
     });
@@ -137,14 +172,12 @@ function cargarDocentes2(lsDocentes){
 //SE EJCUTA NI BIEN CARGA LA PANTALLA
 cargarDocentes2(lsDocentes);
 
-// cargarDocentes(planchas);
-cargarCursos(planchas);
-
 btnLimpiar.addEventListener("click", () =>{
+    cargarCursos2(lsCursos);
+    cargarDocentes2(lsDocentes);
     boxCurso.value = "";
     boxDocente.value = "";
-    lista(planchas);
-    tabla.innerHTML="";
+    tabla.innerHTML = "";
 })
 
 function obtenerOpcionesUnicas(planchas, campo){
