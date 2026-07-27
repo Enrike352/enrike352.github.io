@@ -1,20 +1,20 @@
-:root{
-    --bg-color:#f5f5f5;
-    --text-color:#070707;
-    --accent-color:#00bc4;
+:root {
+    --bg-color: #f5f5f5;
+    --text-color: #070707;
+    --accent-color: #00bc4;
 }
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-body{
+body {
     font-family: system-ui;
     background-color: var(--bg-color);
     color: var(--text-color);
-    
+
     display: flex;
     flex-direction: column;
 
@@ -22,13 +22,13 @@ body{
     min-height: 100vh;
 }
 
-.titulo{
+.titulo {
     font-size: 60px;
     margin-bottom: 20px;
-    text-align:center;
+    text-align: center;
 }
 
-.marco_busqueda{
+.marco_busqueda {
     padding: 15px;
     display: flex;
     justify-content: center;
@@ -37,44 +37,28 @@ body{
     flex-wrap: wrap;
 }
 
-.busqueda{
+.busqueda {
     padding: 10px;
 }
 
-.btn_buscar{
+.btn_buscar {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #195591 !important;
+    border-color: #0c4175 !important;
+    color: white !important;
+}
+
+.btn_buscar:hover {
+    background-color: #154674 !important;
+    border-color: #001a33 !important;
+}
+
+.btn_limpiar {
     padding: 10px;
     cursor: pointer;
 }
 
-.btn_limpiar{
-    padding: 10px;
-    cursor: pointer;
+button:hover {
+    background-color: #c0b0b0
 }
-
-button:hover{
-    background-color:#c0b0b0
-}
-
-table{
-    margin: 20px auto;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td{
-    padding: 12px;
-    border: 1px solid #ccc;
-}
-
-th{
-    padding: 12px;
-    border: 1px solid #ccc;
-    background-color: #7c5c5c;
-    color: #ffffff;
-}
-
-tbody tr:hover {
-    background-color: #e0e0e0;
-    cursor: default;
-}
-

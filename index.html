@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planchas - Buscador</title>
+    <title>Planchas SM</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
+
 <body>
     <div class="container">
-        <h1 class="titulo">PLANCHAS SM</h1>
-        <div class="marco_busqueda">
-            <input class="busqueda" type="text" id="nombre" name="nombre" placeholder="Buscar Examenes...">
-            <select class="busqueda" name="curso" id="curso">
-                <option value="">Seleccionar Curso</option>
-            </select>
-            <select class="busqueda" name="docente" id="docente">
-                <option value="">Seleccionar Docente</option>
-            </select>
-            <button class="btn_buscar" name="buscar" id="btnBuscar">Buscar</button>
-            <button class="btn_limpiar" id="btnLimpiar">Limpiar</button>
+        <h1 class="titulo mb-4">PLANCHAS SM</h1>
+        <div class="marco_busqueda mb-4">
+            <div class="d-flex justify-content-center gap-3">
+                <select class="busqueda form-select border-secondary-subtle shadow-sm " name="curso" id="curso">
+                    <option value="">Seleccionar Curso</option>
+                </select>
+                <select class="busqueda form-select border-secondary-subtle shadow-sm" name="docente" id="docente">
+                    <option value="">Seleccionar Docente</option>
+                </select>
+                <button class="btn_buscar btn btn-primary" name="buscar" id="btnBuscar">Buscar</button>
+
+                <button class="btn btn-outline-secondary" id="btnLimpiar">Limpiar</button>
+            </div>
         </div>
         <div id="resultados">
-            <table>
-                <thead>
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="table-dark">
                     <tr>
                         <th>Curso</th>
                         <th>Docente</th>
@@ -38,19 +44,9 @@
         </div>
     </div>
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
-
-<!--
-                <option value="">Seleccionar Curso</option>
-                <option value="Programacion de Computadoras 2">Programacion de Computadoras 2</option>
-                <option value="Programacion de Computadoras 1">Programacion de Computadoras 1</option>
-                <option value="Analisis de Sistemas de Informacion">Analisis de Sistemas de Informacion</option>
-                <option value="Estructura de Datos">Estructura de Datos</option>
-
-
-                <option value="">Seleccionar Docente</option>
-                <option value="Elias Espinoza">Elias Espinoza</option>
-                <option value="Soto Soto">Soto Soto</option>
-                <option value="Luzmila Pro Concepcion">Luzmila Pro Concepcion</option>
--->

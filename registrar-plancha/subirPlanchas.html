@@ -1,0 +1,69 @@
+<form id="form_subir_plancha">
+
+    <div class="grupo_input">
+        <label for="nuevo_curso">Curso:</label>
+        <select class="busqueda" name="nuevo_curso" id="nuevo_curso" required>
+            <option value="">Seleccionar Curso</option>
+        </select>
+    </div>
+
+    <div class="grupo_input">
+        <label for="nuevo_docente">Docente:</label>
+        <select class="busqueda" name="nuevo_docente" id="nuevo_docente" required>
+            <option value="">Seleccionar Docente</option>
+        </select>
+    </div>
+
+    <div class="grupo_input">
+        <label for="tipo_examen">Tipo de Examen:</label>
+        <select class="busqueda" name="tipo_examen" id="tipo_examen" required>
+            <option value="">Seleccionar Tipo</option>
+            <option value="PARCIAL">Parcial</option>
+            <option value="FINAL">Final</option>
+            <option value="SUSTITUTORIO">Sustitutorio</option>
+            <option value="PRACTICA">Práctica</option>
+        </select>
+    </div>
+
+    <div class="grupo_input">
+        <label for="ciclo">Ciclo:</label>
+        <select class="busqueda" name="ciclo" id="ciclo" required>
+            <option value="">Seleccionar Ciclo</option>
+            <option value="1">1º Ciclo</option>
+            <option value="2">2º Ciclo</option>
+            <option value="3">3º Ciclo</option>
+            <option value="4">4º Ciclo</option>
+            <option value="5">5º Ciclo</option>
+            <option value="6">6º Ciclo</option>
+            <option value="7">7º Ciclo</option>
+            <option value="8">8º Ciclo</option>
+            <option value="9">9º Ciclo</option>
+            <option value="10">10º Ciclo</option>
+        </select>
+    </div>
+
+    <div class="grupo_input">
+        <label for="periodo">Periodo Académico:</label>
+        <select class="busqueda" name="periodo" id="periodo" required>
+            <option value="">Seleccionar Periodo</option>
+            <option value="2025-I">2025-I</option>
+            <option value="2025-II">2025-II</option>
+            <option value="2026-I">2026-I</option>
+            <option value="2026-II">2026-II</option>
+        </select>
+    </div>
+
+    <div class="grupo_input">
+        <label for="fecha_examen">Fecha del Examen:</label>
+        <input type="date" class="busqueda" id="fecha_examen" name="fecha_examen" required>
+    </div>
+
+    <div class="grupo_input">
+        <label for="archivo_plancha">Archivo de la plancha:</label>
+        <input type="file" class="busqueda" id="archivo_plancha" name="archivo_plancha" accept=".pdf, .jpg, .png, .jpeg"
+            required>
+    </div>
+
+    <button type="submit" class="btn_buscar" id="btnSubir">Subir Plancha</button>
+
+</form>
